@@ -8,6 +8,8 @@ CMD mkdir ~/.npm-global
 
 ENV NPM_CONFIG_PREFIX=~/.npm-global
 
+RUN addgroup app && adduser -S -G app app
+
 # Setze Benutzer auf einen nicht-root Benutzer
 USER app
 
