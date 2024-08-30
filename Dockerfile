@@ -6,8 +6,6 @@ COPY ./frontend /app
 
 CMD mkdir ~/.npm-global
 
-CMD mkdir ~/node_modules
-
 COPY package.json /app/package.json
 
 COPY package-lock.json /app/package-lock.json
