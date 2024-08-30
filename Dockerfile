@@ -9,10 +9,7 @@ CMD mkdir ~/.npm-global
 ENV NPM_CONFIG_PREFIX=~/.npm-global
 
 # Setze Benutzer auf einen nicht-root Benutzer
-USER 1001
-
-# Stelle sicher, dass alle Dateien im Besitz des neuen Benutzers sind und berechtigungen vergeben
-RUN chown -R 1001:0 /app && chmod -R 755 /app
+USER app
 
 RUN npm install && npm run build
 
