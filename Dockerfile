@@ -6,14 +6,9 @@ COPY ./frontend /app
 
 CMD mkdir ~/.npm-global
 
-ENV NPM_CONFIG_PREFIX=~/.npm-global
+COPY package.json package.json
 
-RUN addgroup app && adduser -S -G app app
-
-COPY --chown=app:node package*.json ./
-
-# Setze Benutzer auf einen nicht-root Benutzer
-USER app
+COPY package-lock.json package-lock.json
 
 RUN npm install && npm run build
 
