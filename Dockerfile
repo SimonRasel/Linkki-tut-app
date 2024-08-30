@@ -1,28 +1,26 @@
-# Stage 1: Build the Node.js frontend
-FROM registry.access.redhat.com/ubi8/nodejs-20 as frontend-build
+# Schritt 1: Verwende ein Image mit Node.js vorinstalliert
+FROM registry.access.redhat.com/ubi8/nodejs-20
 
+# Schritt 2: Installiere OpenJDK 17, um die Java-Anwendung zu unterstützen
+RUN microdnf --setopt=install_weak_deps=0 --setopt=tsflags=nodocs install -y java-17-openjdk-devel && \
+    microdnf clean all
+
+# Schritt 3: Setze das Arbeitsverzeichnis
 WORKDIR /app
-COPY ./frontend /app
 
+# Schritt 4: Kopiere alle Dateien in das Arbeitsverzeichnis
+COPY . .
+
+# Schritt 5: Installiere Node.js Abhängigkeiten für das Frontend
+WORKDIR /app/frontend
 RUN npm install && npm run build
 
-# Stage 2: Build the Java backend
-FROM registry.access.redhat.com/ubi8/openjdk-17 as backend-build
+# Schritt 6: Wechsle zum Backend-Arbeitsverzeichnis und installiere Maven-Abhängigkeiten
+WORKDIR /app/backend
+RUN ./mvnw install
 
-WORKDIR /app
-COPY ./backend /app
+# Schritt 7: Baue das Java Spring Boot Projekt
+RUN ./mvnw package
 
-RUN ./mvnw install && ./mvnw package
-
-# Stage 3: Combine the two stages
-FROM registry.access.redhat.com/ubi8/openjdk-17
-
-WORKDIR /app
-
-# Copy the built frontend assets from the frontend stage
-COPY --from=frontend-build /app/build ./frontend
-
-# Copy the built Java application from the backend stage
-COPY --from=backend-build /app/target/your-app.jar .
-
-CMD ["java", "-jar", "your-app.jar"]
+# Schritt 8: Setze den Befehl zum Starten der Anwendung
+CMD ["java", "-jar", "target/your-app.jar"]
