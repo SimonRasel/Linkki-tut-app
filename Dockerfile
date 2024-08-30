@@ -6,11 +6,7 @@ COPY ./frontend /app
 
 CMD mkdir ~/.npm-global
 
-RUN npm config set prefix '~/.npm-global'
-
-RUN echo export PATH=~/.npm-global/bin:$PATH >.profile
-
-RUN source ~/.profile 
+ENV NPM_CONFIG_PREFIX=~/.npm-global
 
 RUN npm install && npm run build
 
