@@ -1,0 +1,17 @@
+{
+  "frontendFolder": "C:/Users/v010681/eclipse-workspace/linki_testr/linkki_2/linkki_fix/frontend",
+  "themeFolder": "themes",
+  "themeResourceFolder": "C:/Users/v010681/eclipse-workspace/linki_testr/linkki_2/linkki_fix/frontend/generated/jar-resources",
+  "staticOutput": "C:/Users/v010681/eclipse-workspace/linki_testr/linkki_2/linkki_fix/target/classes/META-INF/VAADIN/webapp/VAADIN/static",
+  "generatedFolder": "generated",
+  "statsOutput": "C:\\Users\\v010681\\eclipse-workspace\\linki_testr\\linkki_2\\linkki_fix\\target\\classes\\META-INF\\VAADIN\\config",
+  "frontendBundleOutput": "C:\\Users\\v010681\\eclipse-workspace\\linki_testr\\linkki_2\\linkki_fix\\target\\classes\\META-INF\\VAADIN\\webapp",
+  "devBundleOutput": "C:/Users/v010681/eclipse-workspace/linki_testr/linkki_2/linkki_fix/target/dev-bundle/webapp",
+  "devBundleStatsOutput": "C:/Users/v010681/eclipse-workspace/linki_testr/linkki_2/linkki_fix/target/dev-bundle/config",
+  "jarResourcesFolder": "C:/Users/v010681/eclipse-workspace/linki_testr/linkki_2/linkki_fix/frontend/generated/jar-resources",
+  "themeName": "linkki",
+  "clientServiceWorkerSource": "C:\\Users\\v010681\\eclipse-workspace\\linki_testr\\linkki_2\\linkki_fix\\target\\sw.ts",
+  "pwaEnabled": false,
+  "offlineEnabled": false,
+  "offlinePath": "'offline.html'"
+}

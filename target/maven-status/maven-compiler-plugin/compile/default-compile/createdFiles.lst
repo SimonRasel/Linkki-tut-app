@@ -1,0 +1,16 @@
+main\table\AddressRowPmo.class
+main\ui\BusinessPartnerLayout.class
+main\ui\BusinessPartnerConfig.class
+main\view\PartnerDetailsSectionPmo.class
+main\table\SearchResultRowPmo.class
+main\view\SearchPage.class
+main\view\PartnerDetailsView.class
+main\view\BusinessPartnerView.class
+main\ui\BusinessPartnerInfo.class
+main\view\AddressPage.class
+main\table\AddressPmo.class
+main\table\SearchResultTablePmo.class
+main\view\BasicDataPage.class
+main\BusinessPartnerApplication.class
+main\layout\SearchSectionPmo.class
+main\table\AddressTablePmo.class
