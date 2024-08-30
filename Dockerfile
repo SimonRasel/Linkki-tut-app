@@ -12,6 +12,10 @@ COPY package.json package.json
 
 COPY package-lock.json package-lock.json
 
+RUN chown -R 1001:0 /app && chmod -R 775 /app
+
+USER 1001
+
 RUN npm install && npm run build
 
 # Stage 2: Build the Java backend
