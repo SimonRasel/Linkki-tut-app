@@ -8,13 +8,9 @@ CMD mkdir ~/.npm-global
 
 CMD mkdir ~/node_modules
 
-COPY package.json package.json
+COPY package.json /app/package.json
 
-COPY package-lock.json package-lock.json
-
-RUN chown -R 1001:0 /app && chmod -R 775 /app
-
-USER 1001
+COPY package-lock.json /app/package-lock.json
 
 RUN npm install && npm run build
 
