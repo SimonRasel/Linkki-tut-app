@@ -4,6 +4,14 @@ FROM registry.access.redhat.com/ubi8/nodejs-20 as frontend-build
 WORKDIR /app
 COPY ./frontend /app
 
+CMD mkdir ~/.npm-global
+
+RUN npm config set prefix '~/.npm-global'
+
+RUN echo export PATH=~/.npm-global/bin:$PATH >.profile
+
+RUN source ~/.profile 
+
 RUN npm install && npm run build
 
 # Stage 2: Build the Java backend
