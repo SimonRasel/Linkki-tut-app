@@ -1,4 +1,4 @@
-FROM node:registry.access.redhat.com/ubi8/nodejs-20
+FROM registry.access.redhat.com/ubi8/nodejs-20 as node
 
 RUN npm install --global pm2
 
