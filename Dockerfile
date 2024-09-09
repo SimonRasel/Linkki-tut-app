@@ -1,17 +1,14 @@
-# Stage 1: Build the Node.js frontend
 FROM registry.access.redhat.com/ubi8/nodejs-20 as frontend-build
 
-# Erstelle ein temporäres Arbeitsverzeichnis im Home-Verzeichnis des Containers
-WORKDIR /tmp/app
-COPY ./frontend /tmp/app
+RUN npm install --global pm2
 
-# Setze npm, um in ein benutzerdefiniertes Verzeichnis zu schreiben
-RUN npm config set prefix '~/.npm-global'
-ENV PATH=$PATH:~/.npm-global/bin
+RUN adduser node root
+COPY ./frontend /app
+WORKDIR /app
 
 # Kopiere die notwendigen Dateien für npm install und build
-COPY package.json /tmp/app/package.json
-COPY package-lock.json /tmp/app/package-lock.json
+COPY package.json /app/package.json
+COPY package-lock.json /app/package-lock.json
 
 # Installiere Abhängigkeiten und baue das Projekt
 RUN npm install && npm run build
