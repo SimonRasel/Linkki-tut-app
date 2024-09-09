@@ -1,19 +1,19 @@
-FROM registry.access.redhat.com/ubi8/nodejs-20 as frontend-build
+FROM node:registry.access.redhat.com/ubi8/nodejs-20
 
 RUN npm install --global pm2
 
-RUN adduser frontend-build root
-COPY ./frontend /home/frontend-build/app
-WORKDIR /home/frontend-build/app
+RUN adduser node root
+COPY ./frontend /home/node/app
+WORKDIR /home/node/app
 
 # Kopiere die notwendigen Dateien für npm install und build
-COPY package.json /home/frontend-build/app/package.json
-COPY package-lock.json /home/frontend-build/app/package-lock.json
+COPY package.json /home/node/app/package.json
+COPY package-lock.json /home/node/app/package-lock.json
 
 RUN npm install --production
 
-RUN chmod -R 775 /home/frontend-build/app
-RUN chown -R node:root /home/frontend-build/app
+RUN chmod -R 775 /home/node/app
+RUN chown -R node:root /home/node/app
 
 EXPOSE 8100
 
