@@ -11,11 +11,10 @@ COPY package-lock.json /home/node/app/package-lock.json
 
 USER root
 
-# Ändert die Dateiberechtigungen für das gesamte Verzeichnis /home/node/app
-RUN chmod -R 775 /home/node/app
-
 RUN npm install
 
+# Ändert die Dateiberechtigungen für das gesamte Verzeichnis /home/node/app
+RUN chmod -R 775 /home/node/app
 RUN chown -R node:root /home/node/app
 
 EXPOSE 8080
