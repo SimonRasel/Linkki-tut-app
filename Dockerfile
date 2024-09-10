@@ -31,7 +31,7 @@ FROM registry.access.redhat.com/ubi8/openjdk-17 as backend-build
 COPY ./src /app
 
 # Install Maven in the container
-RUN dnf install -y maven
+RUN yum install -y maven
 
 # Ensure mvnw exists in the right location
 RUN chmod +x /app/mvnw
