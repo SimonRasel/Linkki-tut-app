@@ -1,6 +1,6 @@
 FROM registry.access.redhat.com/ubi8/nodejs-20 as frontend-build
 
-RUN npm install --global pm2
+RUN npm install --global
 
 COPY ./frontend /home/node/app
 WORKDIR /home/node/app
@@ -10,6 +10,7 @@ COPY package.json /home/node/app/package.json
 COPY package-lock.json /home/node/app/package-lock.json
 
 USER root
+RUN adduser node root
 
 RUN npm install
 
@@ -20,8 +21,6 @@ RUN chown -R node:root /home/node/app
 EXPOSE 8080
 
 USER 1000
-
-CMD ["pm2-docker", "start", "--auto-exit", "--env", "production", "process.yml"]
 
 # Stage 2: Build the Java backend
 FROM registry.access.redhat.com/ubi8/openjdk-17 as backend-build
