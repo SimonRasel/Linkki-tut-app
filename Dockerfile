@@ -8,6 +8,11 @@ COPY package.json /app/package.json
 COPY package-lock.json /app/package-lock.json
 
 USER root
+
+# Erstelle den Benutzer node
+RUN useradd -m -d /home/node -s /bin/bash node
+
+# Füge den Benutzer node zur root-Gruppe hinzu
 RUN usermod -aG root node
 
 RUN npm install
