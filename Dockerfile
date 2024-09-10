@@ -25,18 +25,19 @@ EXPOSE 8080
 
 USER 1000
 
+# Stage 2: Build the Java Backend (Using an image with Maven pre-installed)
+FROM maven:3.8.6-openjdk-17 as backend-build
+
+WORKDIR /app
+COPY ./backend /app
+
+# Run Maven to install dependencies and package the backend
+RUN mvn install && mvn package
+
 # Stage 2: Build the Java backend
 FROM registry.access.redhat.com/ubi8/openjdk-17 as backend-build
 
-COPY ./src /app
-
-# Install Maven in the container
-RUN microdnf install -y maven
-
-# Ensure mvnw exists in the right location
-RUN chmod +x /app/mvnw
-
-RUN mvnw install && mvnw package
+WORKDIR /app
 
 # Kopiere die gebauten Frontend-Assets aus der frontend-build Stage
 COPY --from=frontend-build /app/build ./frontend
