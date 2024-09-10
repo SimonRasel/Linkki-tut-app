@@ -2,12 +2,12 @@ FROM registry.access.redhat.com/ubi8/nodejs-20 as frontend-build
 
 RUN npm install --global
 
-COPY ./frontend /home/node/app
-WORKDIR /home/node/app
+COPY ./frontend /app
+WORKDIR /app
 
 # Kopiere die notwendigen Dateien für npm install und build
-COPY package.json /home/node/app/package.json
-COPY package-lock.json /home/node/app/package-lock.json
+COPY package.json /app/package.json
+COPY package-lock.json /app/package-lock.json
 
 USER root
 RUN adduser node root
@@ -15,8 +15,8 @@ RUN adduser node root
 RUN npm install
 
 # Ändert die Dateiberechtigungen für das gesamte Verzeichnis /home/node/app
-RUN chmod -R 775 /home/node/app
-RUN chown -R node:root /home/node/app
+RUN chmod -R 775 /app
+RUN chown -R node:root /app
 
 EXPOSE 8080
 
