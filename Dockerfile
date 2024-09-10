@@ -36,7 +36,7 @@ RUN yum install -y maven
 # Ensure mvnw exists in the right location
 RUN chmod +x /app/mvnw
 
-RUN ./mvnw install && ./mvnw package
+RUN mvnw install && mvnw package
 
 # Kopiere die gebauten Frontend-Assets aus der frontend-build Stage
 COPY --from=frontend-build /app/build ./frontend
