@@ -1,7 +1,5 @@
 FROM registry.access.redhat.com/ubi8/nodejs-20 as frontend-build
 
-RUN npm install --global
-
 COPY ./frontend /app
 WORKDIR /app
 
