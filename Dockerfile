@@ -15,7 +15,7 @@ RUN npm install --production
 RUN chmod -R 775 /home/node/app
 RUN chown -R node:root /home/node/app
 
-EXPOSE 8100
+EXPOSE 8080
 
 USER 1000
 
