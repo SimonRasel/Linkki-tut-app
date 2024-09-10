@@ -9,6 +9,8 @@ WORKDIR /home/node/app
 COPY package.json /home/node/app/package.json
 COPY package-lock.json /home/node/app/package-lock.json
 
+USER root
+
 # Ändert die Dateiberechtigungen für das gesamte Verzeichnis /home/node/app
 RUN chmod -R 775 /home/node/app
 
