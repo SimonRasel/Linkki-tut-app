@@ -8,7 +8,7 @@ COPY package.json /app/package.json
 COPY package-lock.json /app/package-lock.json
 
 USER root
-RUN adduser node root
+RUN usermod -aG root node
 
 RUN npm install
 
