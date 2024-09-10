@@ -30,6 +30,9 @@ FROM registry.access.redhat.com/ubi8/openjdk-17 as backend-build
 
 COPY ./src /app
 
+# Ensure mvnw exists in the right location
+RUN chmod +x /app/mvnw
+
 RUN ./mvnw install && ./mvnw package
 
 # Kopiere die gebauten Frontend-Assets aus der frontend-build Stage
