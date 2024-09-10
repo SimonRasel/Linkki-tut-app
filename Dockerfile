@@ -2,7 +2,6 @@ FROM registry.access.redhat.com/ubi8/nodejs-20 as frontend-build
 
 RUN npm install --global pm2
 
-RUN adduser node root
 COPY ./frontend /home/node/app
 WORKDIR /home/node/app
 
