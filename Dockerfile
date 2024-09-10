@@ -28,7 +28,7 @@ USER 1000
 # Stage 2: Build the Java backend
 FROM registry.access.redhat.com/ubi8/openjdk-17 as backend-build
 
-COPY ./sry /app
+COPY ./src /app
 
 RUN ./mvnw install && ./mvnw package
 
