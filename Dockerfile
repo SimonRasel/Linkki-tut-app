@@ -28,20 +28,14 @@ USER 1000
 # Stage 2: Build the Java backend
 FROM registry.access.redhat.com/ubi8/openjdk-17 as backend-build
 
-WORKDIR /app
-COPY ./backend /app
+COPY ./sry /app
 
 RUN ./mvnw install && ./mvnw package
 
-# Stage 3: Combine the two stages
-FROM registry.access.redhat.com/ubi8/openjdk-17
-
-WORKDIR /app
-
 # Kopiere die gebauten Frontend-Assets aus der frontend-build Stage
-COPY --from=frontend-build /tmp/app/build ./frontend
+COPY --from=frontend-build /app/build ./frontend
 
 # Kopiere die gebaute Java-Anwendung aus der backend-build Stage
-COPY --from=backend-build /app/target/your-app.jar .
+COPY --from=backend-build /app/target/work-1.jar .
 
-CMD ["java", "-jar", "your-app.jar"]
+CMD ["java", "-jar", "work-1.jar"]
