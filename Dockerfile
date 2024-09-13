@@ -31,7 +31,7 @@ FROM registry.access.redhat.com/ubi8/openjdk-17 as backend-build
 COPY ./src /app
 WORKDIR /app
 
-COPY /app ./src/pom.xml 
+COPY ./src/pom.xml /app 
 
 RUN mvn clean package -DskipTests
 
