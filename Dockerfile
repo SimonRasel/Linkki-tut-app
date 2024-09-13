@@ -30,16 +30,9 @@ FROM registry.access.redhat.com/ubi8/openjdk-17 as backend-build
 
 WORKDIR /app
 
-# Install Maven manually
-RUN curl -O https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz && \
-    tar -xzvf apache-maven-3.8.6-bin.tar.gz && \
-    mv apache-maven-3.8.6 /usr/local/maven && \
-    ln -s /usr/local/maven/bin/mvn /usr/bin/mvn
-
 COPY ./src /app
 
-# Run Maven to install dependencies and package the backend
-RUN mvn install && mvn package
+RUN mvn clean package -DskipTests
 
 # Kopiere die gebauten Frontend-Assets aus der frontend-build Stage
 COPY --from=frontend-build /app/build ./frontend
