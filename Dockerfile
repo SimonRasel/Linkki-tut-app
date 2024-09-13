@@ -28,9 +28,10 @@ USER 1000
 # Stage 2: Build the Java backend
 FROM registry.access.redhat.com/ubi8/openjdk-17 as backend-build
 
+COPY ./src /app
 WORKDIR /app
 
-COPY ./src /app
+COPY /app ./src/pom.xml 
 
 RUN mvn clean package -DskipTests
 
