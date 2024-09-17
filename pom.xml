@@ -42,8 +42,6 @@
 <url>https://repo01.vkbads.de/artifactory/faktorzehn-mvn-ext/</url>
 </pluginRepository>
 </pluginRepositories>
-</profile>
-</profiles>
 <mirrors>
 <mirror>
 <id>internal-central</id>
