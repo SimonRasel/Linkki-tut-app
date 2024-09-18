@@ -31,7 +31,4 @@ FROM registry.access.redhat.com/ubi8/openjdk-17 as backend-build
 COPY ./target/work-1.jar /app/work-1.jar
 WORKDIR /app
 
-# Kopiere die gebauten Frontend-Assets aus der frontend-build Stage
-COPY --from=frontend-build /app/build ./frontend
-
 CMD ["java", "-jar", "work-1.jar"]
