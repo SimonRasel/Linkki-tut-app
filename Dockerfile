@@ -28,17 +28,10 @@ USER 1000
 # Stage 2: Build the Java backend
 FROM registry.access.redhat.com/ubi8/openjdk-17 as backend-build
 
-COPY ./src /app
+COPY ./target/work-1.jar /app/work-1.jar
 WORKDIR /app
-
-COPY pom.xml /app/pom.xml  
-
-RUN mvn clean package -DskipTests
 
 # Kopiere die gebauten Frontend-Assets aus der frontend-build Stage
 COPY --from=frontend-build /app/build ./frontend
-
-# Kopiere die gebaute Java-Anwendung aus der backend-build Stage
-COPY --from=backend-build /app/target/work-1.jar .
 
 CMD ["java", "-jar", "work-1.jar"]
